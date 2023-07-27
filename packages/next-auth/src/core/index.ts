@@ -316,7 +316,6 @@ export async function AuthHandler<
   }
 
   return {
-    status: 400,
-    body: `Error: This action with HTTP ${method} is not supported by NextAuth.js` as any,
+    status: 200,
   }
 }

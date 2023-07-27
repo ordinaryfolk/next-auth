@@ -54,6 +54,7 @@ const __NEXTAUTH: AuthClientConfig = {
       process.env.NEXTAUTH_URL ??
       process.env.VERCEL_URL
   ).origin,
+  baseAuthServerPath: process.env.NEXT_PUBLIC_BASE_AUTH_URL_SERVER ?? "",
   basePathServer: parseUrl(
     process.env.NEXTAUTH_URL_INTERNAL ?? process.env.NEXTAUTH_URL
   ).path,

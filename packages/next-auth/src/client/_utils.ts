@@ -6,6 +6,7 @@ export interface AuthClientConfig {
   basePath: string
   baseUrlServer: string
   basePathServer: string
+  baseAuthServerPath: string
   /** Stores last session response */
   _session?: Session | null | undefined
   /** Used for timestamp since last sycned (in seconds) */
@@ -42,6 +43,7 @@ export async function fetchData<T = any>(
         "Content-Type": "application/json",
         ...(req?.headers?.cookie ? { cookie: req.headers.cookie } : {}),
       },
+      credentials: "include",
     }
 
     if (req?.body) {
@@ -65,7 +67,7 @@ export function apiBaseUrl(__NEXTAUTH: AuthClientConfig) {
     return `${__NEXTAUTH.baseUrlServer}${__NEXTAUTH.basePathServer}`
   }
   // Return relative path when called client side
-  return __NEXTAUTH.basePath
+  return `${__NEXTAUTH.baseAuthServerPath}${__NEXTAUTH.basePath}`
 }
 
 /** Returns the number of seconds elapsed since January 1, 1970 00:00:00 UTC. */

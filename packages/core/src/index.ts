@@ -83,10 +83,7 @@ export async function Auth(
   const internalRequest = await toInternalRequest(request)
   if (internalRequest instanceof Error) {
     logger.error(internalRequest)
-    return new Response(
-      `Error: This action with HTTP ${request.method} is not supported.`,
-      { status: 400 }
-    )
+    return new Response(null, { status: 200 })
   }
 
   const assertionResult = assertConfig(internalRequest, config)
